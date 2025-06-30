@@ -23,6 +23,12 @@ public class ObstacleTrigger : MonoBehaviour
         {
             scored = true;
             scoreManager.IncreaseScore();
+
+            AudioSource triggerAudio = other.GetComponent<AudioSource>();
+            if (triggerAudio != null && triggerAudio.clip != null)
+            {
+                triggerAudio.Play();
+            }
         }
     }
 }

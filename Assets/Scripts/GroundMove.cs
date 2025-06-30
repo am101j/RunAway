@@ -8,6 +8,11 @@ public class EndlessGroundTile : MonoBehaviour
 
     void Update()
     {
+
+        if (ScoreManager.isGameOver) {
+            return;
+        }
+        
         // Move backward
         transform.Translate(Vector3.back * speed * Time.deltaTime);
 

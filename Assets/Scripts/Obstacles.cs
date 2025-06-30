@@ -17,7 +17,7 @@ public class ObstacleMover : MonoBehaviour
             ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
             if (scoreManager != null)
             {
-                scoreManager.ObstacleExited();  // tells ScoreManager to count this
+                scoreManager.ObstacleExited(); 
             }
 
             Destroy(gameObject);

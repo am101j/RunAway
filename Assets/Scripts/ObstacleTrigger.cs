@@ -9,7 +9,8 @@ public class ObstacleTrigger : MonoBehaviour
     private void Start()
     {
         // Find the ScoreManager in the scene when this obstacle spawns
-        scoreManager = FindObjectOfType<ScoreManager>();
+        scoreManager = FindFirstObjectByType<ScoreManager>();
+
 
         if (scoreManager == null)
         {

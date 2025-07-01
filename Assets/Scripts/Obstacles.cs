@@ -14,7 +14,8 @@ public class ObstacleMover : MonoBehaviour
         {
             counted = true;
 
-            ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+            ScoreManager scoreManager = FindFirstObjectByType<ScoreManager>();
+
             if (scoreManager != null)
             {
                 scoreManager.ObstacleExited(); 

@@ -9,6 +9,8 @@ public class ScoreManager : MonoBehaviour
     private int obstaclesPassed = 0;           
     public TextMeshProUGUI scoreText;             // Assign your score UI text here
     public GameObject gameOverText;                // Assign your Game Over UI text here (disabled by default)
+    public TextMeshProUGUI factText;
+    public GameObject FactPanel;
 
     void Start()
     {
@@ -59,6 +61,13 @@ public class ScoreManager : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = $"Final Score: {currentScore} / {maxScore}";
+        }
+
+        if (factText != null)
+        {
+            FactPanel.SetActive(true);
+            FunFacts facts = FindObjectOfType<FunFacts>();
+            factText.text = $"Fun Fact:\n{facts.GetRandomFact()}";
         }
 
         // Show Game Over UI text

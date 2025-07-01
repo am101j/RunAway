@@ -918,8 +918,8 @@ MonoBehaviour:
   - {fileID: 242832749}
   - {fileID: 1793884580}
   obstaclePrefabs:
-  - {fileID: 3837920970050644572, guid: 143985640c9bd5b4dafb707604cd6a67, type: 3}
-  - {fileID: 919132149155446097, guid: 3883d10b54de795479c0b524fab7b04e, type: 3}
+  - {fileID: 3238870283346083914, guid: 9c8eb5fa03bd87a4ca09660e08f0dae8, type: 3}
+  - {fileID: 5257695984501585525, guid: 3e046cbf7b08c1b48980b4a5b4d93e20, type: 3}
   spawnInterval: 1.5
   spawnZ: 50
   maxObstacles: 10

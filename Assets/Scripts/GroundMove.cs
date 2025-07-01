@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EndlessGroundTile : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 15f;
     public float tileLength = 200f;
     public int totalTiles = 3;
 
@@ -12,7 +12,7 @@ public class EndlessGroundTile : MonoBehaviour
         if (ScoreManager.isGameOver) {
             return;
         }
-        
+
         // Move backward
         transform.Translate(Vector3.back * speed * Time.deltaTime);
 

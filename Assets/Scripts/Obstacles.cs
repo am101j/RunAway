@@ -1,8 +1,8 @@
 using UnityEngine;
 public class ObstacleMover : MonoBehaviour
 {
-    public float speed = 10f;
-    public float destroyZ = -50f;
+    public float speed = 15f;
+    public float destroyZ = -20f;
 
     private bool counted = false;  // prevents duplicate scoring
 

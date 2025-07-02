@@ -9,7 +9,6 @@ public class LoginManager : MonoBehaviour
     [Header("UI Panels")]
     public GameObject loginPanel;
     public GameObject readingPanel;
-    public GameObject gameplayPanel; 
 
     [Header("Inputs")]
     public TMP_InputField fullNameInput;
@@ -21,6 +20,13 @@ public class LoginManager : MonoBehaviour
     public TextMeshProUGUI readingFeedbackText;
 
     User currentUser;
+
+    public GameObject gameplayRoot;
+
+    void Start ()
+    {
+        gameplayRoot.SetActive(false);
+    }
 
     public void LoginClick()
     {
@@ -82,7 +88,7 @@ public class LoginManager : MonoBehaviour
 
     void StartGame()
     {
-        gameplayPanel.SetActive(true);
+        gameplayRoot.SetActive(true);
     }
 
     string Hash(string input)

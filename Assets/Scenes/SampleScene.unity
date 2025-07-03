@@ -369,6 +369,7 @@ MonoBehaviour:
   gameOverText: {fileID: 10046621}
   factText: {fileID: 1448081080}
   FactPanel: {fileID: 204219347}
+  loginManager: {fileID: 1365733000}
 --- !u!4 &50495294
 Transform:
   m_ObjectHideFlags: 0
@@ -3869,7 +3870,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loginPanel: {fileID: 24126862}
   readingPanel: {fileID: 798205478}
-  gameplayPanel: {fileID: 0}
   fullNameInput: {fileID: 586345646}
   passwordInput: {fileID: 729547281}
   readingInput: {fileID: 395837774}

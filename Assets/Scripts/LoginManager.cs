@@ -13,7 +13,7 @@ public class LoginManager : MonoBehaviour
     [Header("Inputs")]
     public TMP_InputField fullNameInput;
     public TMP_InputField passwordInput;
-    public TMP_InputField readingInput; 
+    public TMP_InputField readingInput;
 
     [Header("Texts")]
     public TextMeshProUGUI loginFeedbackText;
@@ -23,7 +23,7 @@ public class LoginManager : MonoBehaviour
 
     public GameObject gameplayRoot;
 
-    void Start ()
+    void Start()
     {
         gameplayRoot.SetActive(false);
     }
@@ -33,8 +33,8 @@ public class LoginManager : MonoBehaviour
         string fullName = fullNameInput.text.Trim();
         string pass = passwordInput.text.Trim();
 
-         currentUser = DatabaseManager.db.Table<User>()
-            .FirstOrDefault(u => u.FullName == fullName);
+        currentUser = DatabaseManager.db.Table<User>()
+           .FirstOrDefault(u => u.FullName == fullName);
 
         if (currentUser == null)
         {
@@ -52,40 +52,40 @@ public class LoginManager : MonoBehaviour
         readingPanel.SetActive(true);
     }
 
-public void InputReading()
-{
-    if (!int.TryParse(readingInput.text.Trim(), out int newReading))
+    public void InputReading()
     {
-        readingFeedbackText.text = "Enter a valid number.";
-        return;
+        if (!int.TryParse(readingInput.text.Trim(), out int newReading))
+        {
+            readingFeedbackText.text = "Enter a valid number.";
+            return;
+        }
+
+        int lastReading = currentUser.LastReading;
+        int lastDiff = currentUser.LastDiff;
+
+        if (newReading < lastReading)
+        {
+            readingFeedbackText.text = "Reading can't be lower than before. Try again.";
+            return;
+        }
+
+        int newDiff = newReading - lastReading;
+
+        bool canPlay = (lastReading == 0 || lastDiff == 0 || newDiff <= lastDiff);
+
+        currentUser.LastReading = newReading;
+        currentUser.LastDiff = newDiff;
+        DatabaseManager.db.Update(currentUser);
+
+        if (!canPlay)
+        {
+            readingFeedbackText.text = "Usage has risen. Try again.";
+            return;
+        }
+
+        readingPanel.SetActive(false);
+        StartGame();
     }
-
-    int lastReading = currentUser.LastReading;
-    int lastDiff = currentUser.LastDiff;
-
-    if (newReading < lastReading)
-    {
-        readingFeedbackText.text = "Reading can't be lower than before. Try again.";
-        return;
-    }
-
-    int newDiff = newReading - lastReading;
-
-    bool canPlay = (lastReading == 0 || lastDiff == 0 || newDiff <= lastDiff);
-
-    currentUser.LastReading = newReading;
-    currentUser.LastDiff = newDiff;
-    DatabaseManager.db.Update(currentUser);
-
-    if (!canPlay)
-    {
-        readingFeedbackText.text = "Usage has risen. Try again.";
-        return;
-    }
-
-    readingPanel.SetActive(false);
-    StartGame();
-}
 
 
     public void OnGuestClick()
@@ -107,6 +107,12 @@ public void InputReading()
             sha.ComputeHash(Encoding.UTF8.GetBytes(input))
         ).Replace("-", "").ToLower();
     }
+    
+    public User GetCurrentUser()
+    {
+        return currentUser;
+    }
+
 }
 
 

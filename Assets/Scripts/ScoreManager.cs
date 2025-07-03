@@ -11,6 +11,8 @@ public class ScoreManager : MonoBehaviour
     public GameObject gameOverText;                // Assign your Game Over UI text here (disabled by default)
     public TextMeshProUGUI factText;
     public GameObject FactPanel;
+    public LoginManager loginManager;  // 🔹 Drag into Inspector
+
 
     void Start()
     {
@@ -78,6 +80,17 @@ public class ScoreManager : MonoBehaviour
         }
 
         isGameOver = true;
+
+        if (loginManager != null)
+        {
+            User user = loginManager.GetCurrentUser(); // 🔹 Add this getter to LoginManager
+            if (user != null)
+            {
+                user.Points += currentScore; // or just: user.Points = currentScore;
+                DatabaseManager.db.Update(user);
+            }
+        }
+
 
         // Stop game time
         //Time.timeScale = 0f;

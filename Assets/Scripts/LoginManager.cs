@@ -52,32 +52,41 @@ public class LoginManager : MonoBehaviour
         readingPanel.SetActive(true);
     }
 
-    public void InputReading()
+public void InputReading()
+{
+    if (!int.TryParse(readingInput.text.Trim(), out int newReading))
     {
-        if (!int.TryParse(readingInput.text.Trim(), out int newReading))
-        {
-            readingFeedbackText.text = "Enter valid number";
-            return;
-        }
-
-        int newDiff = newReading - currentUser.LastReading;
-        int lastDiff = currentUser.LastDiff;
-        bool canPlay = lastDiff == 0 || newDiff <= lastDiff;
-
-        currentUser.LastReading = newReading;
-        currentUser.LastDiff = newDiff;
-        DatabaseManager.db.Update(currentUser);
-
-        if (canPlay)
-        {
-            readingPanel.SetActive(false);
-            StartGame();
-        }
-        else
-        {
-            readingFeedbackText.text = "Usage has risen!";
-        }
+        readingFeedbackText.text = "Enter a valid number.";
+        return;
     }
+
+    int lastReading = currentUser.LastReading;
+    int lastDiff = currentUser.LastDiff;
+
+    if (newReading < lastReading)
+    {
+        readingFeedbackText.text = "Reading can't be lower than before. Try again.";
+        return;
+    }
+
+    int newDiff = newReading - lastReading;
+
+    bool canPlay = (lastReading == 0 || lastDiff == 0 || newDiff <= lastDiff);
+
+    currentUser.LastReading = newReading;
+    currentUser.LastDiff = newDiff;
+    DatabaseManager.db.Update(currentUser);
+
+    if (!canPlay)
+    {
+        readingFeedbackText.text = "Usage has risen. Try again.";
+        return;
+    }
+
+    readingPanel.SetActive(false);
+    StartGame();
+}
+
 
     public void OnGuestClick()
     {

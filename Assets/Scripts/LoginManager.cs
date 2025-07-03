@@ -18,6 +18,7 @@ public class LoginManager : MonoBehaviour
     [Header("Texts")]
     public TextMeshProUGUI loginFeedbackText;
     public TextMeshProUGUI readingFeedbackText;
+    public TextMeshProUGUI pointsText;
 
     User currentUser;
 
@@ -50,6 +51,11 @@ public class LoginManager : MonoBehaviour
 
         loginPanel.SetActive(false);
         readingPanel.SetActive(true);
+
+        if (pointsText != null)
+        {
+            pointsText.text = $"Points: {currentUser.Points}";
+        }
     }
 
     public void InputReading()

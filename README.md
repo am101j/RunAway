@@ -1,6 +1,6 @@
 # WaterRunner Game
 
-A Unity-based endless runner game where players navigate through obstacles and repair them to score points.
+A Unity-based endless runner game where players navigate through obstacles and repair them to score points. Built to gamify user experience and promote water saving, by allowing game to be played only if meter reading suggests a lower water use!
 
 ## Game Overview
 
